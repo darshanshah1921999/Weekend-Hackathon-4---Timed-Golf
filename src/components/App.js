@@ -46,34 +46,32 @@ class Timer extends React.Component {
       top: copy.y + "px"
     };
     this.setState(copy);
-    console.log(this.state);
+    // console.log(this.state);
   }
-
-  componentDidMount() {}
 
   componentDidUpdate() {
     if (this.state.x === 250 && this.state.y === 250) {
       clearInterval(this.id);
       document.removeEventListener("keydown", this.handleBall);
+      let copy = { ...this.state };
+      copy.x = 0;
+      copy.y = 0;
+      copy.isStart = false;
+      copy.position = { top: "0px", left: "0px" };
+      copy.time = 0;
+      this.setState(copy);
     }
   }
-
-  componentWillUnmount() {}
 
   render() {
     return (
       <>
-        {!this.state.isStart ? (
-          <button className="start" onClick={this.handleStartClick}>
-            Start
-          </button>
-        ) : (
-          <>
-            <div className="ball" style={this.state.position}></div>
-            <div className="hole"></div>
-            <div className="heading-timer">{this.state.time}</div>
-          </>
-        )}
+        <div className="ball" style={this.state.position}></div>
+        <div className="hole"></div>
+        <div className="heading-timer">{this.state.time}</div>
+        <button className="start" onClick={this.handleStartClick}>
+          Start
+        </button>
       </>
     );
   }
