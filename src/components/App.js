@@ -53,13 +53,13 @@ class Timer extends React.Component {
     if (this.state.x === 250 && this.state.y === 250) {
       clearInterval(this.id);
       document.removeEventListener("keydown", this.handleBall);
-      let copy = { ...this.state };
-      copy.x = 0;
-      copy.y = 0;
-      copy.isStart = false;
-      copy.position = { top: "0px", left: "0px" };
-      copy.time = 0;
-      this.setState(copy);
+      // let copy = { ...this.state };
+      // copy.x = 0;
+      // copy.y = 0;
+      // copy.isStart = false;
+      // copy.position = { top: "0px", left: "0px" };
+      // copy.time = 0;
+      // this.setState(copy);
     }
   }
 
