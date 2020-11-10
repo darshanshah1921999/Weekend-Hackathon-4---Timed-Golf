@@ -7,21 +7,23 @@ class Timer extends React.Component {
       time: 0,
       x: 0,
       y: 0,
-      isStart: false,
-      position: { top: "0px", left: "0px" }
+      position: { top: "0px", left: "0px" },
+      clicked: false
     };
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleBall = this.handleBall.bind(this);
   }
 
   handleStartClick() {
-    let copy = { ...this.state };
-    copy.isStart = true;
-    this.setState(copy);
-    this.id = setInterval(() => {
-      this.handleTime();
-    }, 1000);
-    document.addEventListener("keydown", this.handleBall);
+    if (!this.state.clicked) {
+      let copy = { ...this.state };
+      copy.clicked = true;
+      this.setState(copy);
+      this.id = setInterval(() => {
+        this.handleTime();
+      }, 1000);
+      document.addEventListener("keydown", this.handleBall);
+    }
   }
 
   handleTime() {
@@ -46,20 +48,12 @@ class Timer extends React.Component {
       top: copy.y + "px"
     };
     this.setState(copy);
-    // console.log(this.state);
   }
 
   componentDidUpdate() {
     if (this.state.x === 250 && this.state.y === 250) {
       clearInterval(this.id);
       document.removeEventListener("keydown", this.handleBall);
-      // let copy = { ...this.state };
-      // copy.x = 0;
-      // copy.y = 0;
-      // copy.isStart = false;
-      // copy.position = { top: "0px", left: "0px" };
-      // copy.time = 0;
-      // this.setState(copy);
     }
   }
 
