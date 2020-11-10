@@ -14,6 +14,10 @@ class Timer extends React.Component {
     this.handleBall = this.handleBall.bind(this);
   }
 
+  componentWillUnmount() {}
+
+  componentDidMount() {}
+
   handleStartClick() {
     if (!this.state.clicked) {
       let copy = { ...this.state };
